@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetal Health Prediction</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-image: url('https://cdn.pixabay.com/photo/2024/03/26/15/35/ai-generated-8657118_960_720.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.6);
+            font-family: Arial, sans-serif;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .container {
+            position: relative;
+            z-index: 1;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 8px;
+            width: 100%;
+            max-width: 1100px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            font-size: 2em;
+            color: #FFCC00;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #FFCC00;
+        }
+        p {
+            font-size: 1.1em;
+            color: #f2f2f2;
+            margin-bottom: 20px;
+        }
+        form {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr); /* Six items per row */
+            gap: 15px;
+        }
+        label {
+            font-size: 1em;
+            margin-bottom: 5px;
+        }
+        input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            color: #333;
+            outline: none;
+            width: 100%;
+        }
+        input:focus {
+            border-color: #FFCC00;
+        }
+        button {
+            padding: 12px;
+            font-size: 1.1em;
+            background-color: #FFCC00;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            grid-column: span 6; /* Make the button span the full width */
+        }
+        button:hover {
+            background-color: #e6b800;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+        .result h2 {
+            color: #FFCC00;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <h1>Luca - Fetal Health Analysis System</h1>
+        <p>Designed by Nuri Neurals - AI systems are not a replacement for regular check-ups with a trained medical practitioner.</p>
+        
+        <form method="POST">
+            <!-- 21 Features -->
+            <label for="baseline_value">Baseline Value:</label>
+            <input type="number" id="baseline_value" name="feature1" required>
+
+            <label for="accelerations">Accelerations:</label>
+            <input type="number" id="accelerations" name="feature2" required>
+
+            <label for="fetal_movement">Fetal Movement:</label>
+            <input type="number" id="fetal_movement" name="feature3" required>
+
+            <label for="uterine_contractions">Uterine Contractions:</label>
+            <input type="number" id="uterine_contractions" name="feature4" required>
+
+            <label for="light_decelerations">Light Decelerations:</label>
+            <input type="number" id="light_decelerations" name="feature5" required>
+
+            <label for="severe_decelerations">Severe Decelerations:</label>
+            <input type="number" id="severe_decelerations" name="feature6" required>
+
+            <label for="prolongued_decelerations">Prolongued Decelerations:</label>
+            <input type="number" id="prolongued_decelerations" name="feature7" required>
+
+            <label for="abnormal_short_term_variability">Abnormal Short-Term Variability:</label>
+            <input type="number" id="abnormal_short_term_variability" name="feature8" required>
+
+            <label for="mean_value_of_short_term_variability">Mean Value of Short-Term Variability:</label>
+            <input type="number" id="mean_value_of_short_term_variability" name="feature9" required>
+
+            <label for="percentage_of_time_with_abnormal_long_term_variability">Percentage of Time with Abnormal Long-Term Variability:</label>
+            <input type="number" id="percentage_of_time_with_abnormal_long_term_variability" name="feature10" required>
+
+            <label for="mean_value_of_long_term_variability">Mean Value of Long-Term Variability:</label>
+            <input type="number" id="mean_value_of_long_term_variability" name="feature11" required>
+
+            <label for="histogram_width">Histogram Width:</label>
+            <input type="number" id="histogram_width" name="feature12" required>
+
+            <label for="histogram_min">Histogram Min:</label>
+            <input type="number" id="histogram_min" name="feature13" required>
+
+            <label for="histogram_max">Histogram Max:</label>
+            <input type="number" id="histogram_max" name="feature14" required>
+
+            <label for="histogram_number_of_peaks">Histogram Number of Peaks:</label>
+            <input type="number" id="histogram_number_of_peaks" name="feature15" required>
+
+            <label for="histogram_number_of_zeroes">Histogram Number of Zeroes:</label>
+            <input type="number" id="histogram_number_of_zeroes" name="feature16" required>
+
+            <label for="histogram_mode">Histogram Mode:</label>
+            <input type="number" id="histogram_mode" name="feature17" required>
+
+            <label for="histogram_mean">Histogram Mean:</label>
+            <input type="number" id="histogram_mean" name="feature18" required>
+
+            <label for="histogram_median">Histogram Median:</label>
+            <input type="number" id="histogram_median" name="feature19" required>
+
+            <label for="histogram_variance">Histogram Variance:</label>
+            <input type="number" id="histogram_variance" name="feature20" required>
+
+            <label for="histogram_tendency">Histogram Tendency:</label>
+            <input type="number" id="histogram_tendency" name="feature21" required>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction %}
+            <div class="result">
+                <h2>Predicted Outcome: {{ prediction }}</h2>
+                <h3>Transcript: {{ accuracy }}</h3>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
